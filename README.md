@@ -1,6 +1,6 @@
-# ReVamp for VS Code
+# ReVamp VS Code
 
-Scaffold a new [ReVamp](https://github.com/j2kenton/revamp) project directly from the VS Code command palette.
+Create a new [ReVamp](https://github.com/j2kenton/revamp) starter project directly from the VS Code command palette.
 
 ## What is ReVamp?
 
@@ -9,7 +9,7 @@ ReVamp is a Next.js starter template with TypeScript, Tailwind CSS 4, shadcn/ui,
 ## Usage
 
 1. Open the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
-2. Run **ReVamp: New Project**
+2. Run **ReVamp VS Code: New Project**
 3. Enter a project name and choose a parent folder
 4. The extension creates the project from the bundled starter and opens it in a new window
 5. Install dependencies in the new project before starting development

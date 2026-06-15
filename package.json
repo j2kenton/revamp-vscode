@@ -1,7 +1,7 @@
 {
   "name": "revamp",
-  "displayName": "ReVamp",
-  "description": "Create a ReVamp starter project from the command palette",
+  "displayName": "ReVamp VS Code",
+  "description": "Create a ReVamp starter project from VS Code",
   "version": "0.1.0",
   "publisher": "j2kenton",
   "license": "MIT",
@@ -29,7 +29,7 @@
     "commands": [
       {
         "command": "revamp.newProject",
-        "title": "ReVamp: New Project"
+        "title": "ReVamp VS Code: New Project"
       }
     ]
   },

@@ -4,4 +4,4 @@
 
 ### Added
 - Initial release
-- `ReVamp: New Project` command to scaffold a ReVamp project from the command palette
+- `ReVamp VS Code: New Project` command to scaffold a ReVamp project from the command palette
