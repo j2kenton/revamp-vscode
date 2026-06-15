@@ -4,6 +4,7 @@
   "description": "Scaffold a new ReVamp project from the command palette",
   "version": "0.1.0",
   "engines": { "vscode": "^1.90.0" },
+  "license": "MIT",
   "categories": ["Other"],
   "activationEvents": [],
   "main": "./out/extension.js",
