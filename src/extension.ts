@@ -3,7 +3,7 @@ import * as path from "path";
 import * as fs from "fs";
 import { spawnSync } from "child_process";
 
-const REPO_URL = "https://github.com/jonathankenton/revamp.git";
+const REPO_URL = "https://github.com/j2kenton/revamp.git";
 
 export function activate(context: vscode.ExtensionContext) {
   const cmd = vscode.commands.registerCommand("revamp.newProject", async () => {

@@ -6,7 +6,7 @@ const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
 const child_process_1 = require("child_process");
-const REPO_URL = "https://github.com/jonathankenton/revamp.git";
+const REPO_URL = "https://github.com/j2kenton/revamp.git";
 function activate(context) {
     const cmd = vscode.commands.registerCommand("revamp.newProject", async () => {
         const name = await vscode.window.showInputBox({
