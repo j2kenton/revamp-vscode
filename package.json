@@ -1,13 +1,13 @@
 {
   "name": "revamp",
   "displayName": "ReVamp",
-  "description": "Scaffold an AI-powered ReVamp project from the command palette",
+  "description": "Create a ReVamp starter project from the command palette",
   "version": "0.1.0",
   "publisher": "j2kenton",
   "license": "MIT",
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
-  "keywords": ["scaffold", "template", "nextjs", "ai", "starter"],
+  "keywords": ["scaffold", "template", "nextjs", "starter"],
   "files": [
     "out/**",
     "README.md",

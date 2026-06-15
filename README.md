@@ -4,8 +4,7 @@ Scaffold a new [ReVamp](https://github.com/j2kenton/revamp) project directly fro
 
 ## What is ReVamp?
 
-ReVamp is an AI-first Next.js starter template with a production-ready stack:
-TypeScript, Tailwind CSS 4, shadcn/ui, Redux, NextAuth.js, Zod, SWR, and Framer Motion — plus built-in AI coding guidelines and agent workflows.
+ReVamp is a Next.js starter template with TypeScript, Tailwind CSS 4, shadcn/ui, Redux, NextAuth.js, Zod, SWR, and Framer Motion.
 
 ## Usage
 
@@ -13,12 +12,12 @@ TypeScript, Tailwind CSS 4, shadcn/ui, Redux, NextAuth.js, Zod, SWR, and Framer 
 2. Run **ReVamp: New Project**
 3. Enter a project name and choose a parent folder
 4. The extension clones the template and opens the project in a new window
-5. Run `pnpm install` in the new project before starting development
+5. Install dependencies in the new project before starting development
 
 ## Requirements
 
 - Git must be installed and on your PATH
-- [pnpm](https://pnpm.io) must be installed globally
+- [pnpm](https://pnpm.io) must be installed globally for the generated project
 
 ## License
 

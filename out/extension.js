@@ -38,7 +38,7 @@ function activate(context) {
                 await gitExtension.activate();
             }
             await vscode.commands.executeCommand("_git.cloneRepository", REPO_URL, dest);
-            vscode.window.showInformationMessage(`Created ReVamp project "${name}". Run "pnpm install" in the new window to install dependencies.`);
+            vscode.window.showInformationMessage(`Created ReVamp project "${name}". Install dependencies in the new window before starting development.`);
             const uri = vscode.Uri.file(dest);
             await vscode.commands.executeCommand("vscode.openFolder", uri, {
                 forceNewWindow: true,

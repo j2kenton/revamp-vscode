@@ -42,7 +42,7 @@ export function activate(context: vscode.ExtensionContext) {
       await vscode.commands.executeCommand("_git.cloneRepository", REPO_URL, dest);
 
       vscode.window.showInformationMessage(
-        `Created ReVamp project "${name}". Run "pnpm install" in the new window to install dependencies.`
+        `Created ReVamp project "${name}". Install dependencies in the new window before starting development.`
       );
 
       const uri = vscode.Uri.file(dest);
