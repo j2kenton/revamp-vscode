@@ -1,11 +1,21 @@
 {
   "name": "revamp",
   "displayName": "ReVamp",
-  "description": "Scaffold a new ReVamp project from the command palette",
+  "description": "Scaffold an AI-powered ReVamp project from the command palette",
   "version": "0.1.0",
-  "engines": { "vscode": "^1.90.0" },
+  "publisher": "PUBLISHER_ID_HERE",
   "license": "MIT",
+  "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
+  "keywords": ["scaffold", "template", "nextjs", "ai", "starter"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/j2kenton/revamp-vscode.git"
+  },
+  "bugs": {
+    "url": "https://github.com/j2kenton/revamp-vscode/issues"
+  },
+  "homepage": "https://github.com/j2kenton/revamp-vscode#readme",
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
