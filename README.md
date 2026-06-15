@@ -1,6 +1,6 @@
 # ReVamp for VS Code
 
-Scaffold a new [ReVamp](https://github.com/j2kenton/revamp) project directly from the VS Code command palette — no terminal required.
+Scaffold a new [ReVamp](https://github.com/j2kenton/revamp) project directly from the VS Code command palette.
 
 ## What is ReVamp?
 
@@ -12,7 +12,8 @@ TypeScript, Tailwind CSS 4, shadcn/ui, Redux, NextAuth.js, Zod, SWR, and Framer 
 1. Open the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 2. Run **ReVamp: New Project**
 3. Enter a project name and choose a parent folder
-4. The extension clones the template, runs `pnpm install`, and opens the project in a new window
+4. The extension clones the template and opens the project in a new window
+5. Run `pnpm install` in the new project before starting development
 
 ## Requirements
 

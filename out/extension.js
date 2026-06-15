@@ -5,7 +5,6 @@ exports.deactivate = deactivate;
 const vscode = require("vscode");
 const path = require("path");
 const fs = require("fs");
-const child_process_1 = require("child_process");
 const REPO_URL = "https://github.com/j2kenton/revamp.git";
 function activate(context) {
     const cmd = vscode.commands.registerCommand("revamp.newProject", async () => {
@@ -29,30 +28,26 @@ function activate(context) {
             vscode.window.showErrorMessage(`Folder "${name}" already exists here.`);
             return;
         }
-        await vscode.window.withProgress({
-            location: vscode.ProgressLocation.Notification,
-            title: `Creating ReVamp project "${name}"…`,
-            cancellable: false,
-        }, async (progress) => {
-            try {
-                progress.report({ message: "Cloning…" });
-                const clone = (0, child_process_1.spawnSync)("git", ["clone", REPO_URL, dest], { stdio: "pipe" });
-                if (clone.status !== 0)
-                    throw new Error(clone.stderr?.toString() || "git clone failed");
-                const uri = vscode.Uri.file(dest);
-                await vscode.commands.executeCommand("vscode.openFolder", uri, {
-                    forceNewWindow: true,
-                });
-                // Open a terminal so the user can run pnpm install in the new window
-                const terminal = vscode.window.createTerminal({ name: "ReVamp Setup", cwd: dest });
-                terminal.show();
-                terminal.sendText("pnpm install");
+        try {
+            const gitExtension = vscode.extensions.getExtension("vscode.git");
+            if (!gitExtension) {
+                vscode.window.showErrorMessage("The built-in Git extension is required to create a ReVamp project.");
+                return;
             }
-            catch (err) {
-                const msg = err instanceof Error ? err.message : String(err);
-                vscode.window.showErrorMessage(`ReVamp setup failed: ${msg}`);
+            if (!gitExtension.isActive) {
+                await gitExtension.activate();
             }
-        });
+            await vscode.commands.executeCommand("_git.cloneRepository", REPO_URL, dest);
+            vscode.window.showInformationMessage(`Created ReVamp project "${name}". Run "pnpm install" in the new window to install dependencies.`);
+            const uri = vscode.Uri.file(dest);
+            await vscode.commands.executeCommand("vscode.openFolder", uri, {
+                forceNewWindow: true,
+            });
+        }
+        catch (err) {
+            const msg = err instanceof Error ? err.message : String(err);
+            vscode.window.showErrorMessage(`ReVamp setup failed: ${msg}`);
+        }
     });
     context.subscriptions.push(cmd);
 }

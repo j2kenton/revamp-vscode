@@ -1,7 +1,6 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
-import { spawnSync } from "child_process";
 
 const REPO_URL = "https://github.com/j2kenton/revamp.git";
 
@@ -29,33 +28,31 @@ export function activate(context: vscode.ExtensionContext) {
       return;
     }
 
-    await vscode.window.withProgress(
-      {
-        location: vscode.ProgressLocation.Notification,
-        title: `Creating ReVamp project "${name}"…`,
-        cancellable: false,
-      },
-      async (progress) => {
-        try {
-          progress.report({ message: "Cloning…" });
-          const clone = spawnSync("git", ["clone", REPO_URL, dest], { stdio: "pipe" });
-          if (clone.status !== 0) throw new Error(clone.stderr?.toString() || "git clone failed");
-
-          const uri = vscode.Uri.file(dest);
-          await vscode.commands.executeCommand("vscode.openFolder", uri, {
-            forceNewWindow: true,
-          });
-
-          // Open a terminal so the user can run pnpm install in the new window
-          const terminal = vscode.window.createTerminal({ name: "ReVamp Setup", cwd: dest });
-          terminal.show();
-          terminal.sendText("pnpm install");
-        } catch (err: unknown) {
-          const msg = err instanceof Error ? err.message : String(err);
-          vscode.window.showErrorMessage(`ReVamp setup failed: ${msg}`);
-        }
+    try {
+      const gitExtension = vscode.extensions.getExtension("vscode.git");
+      if (!gitExtension) {
+        vscode.window.showErrorMessage("The built-in Git extension is required to create a ReVamp project.");
+        return;
       }
-    );
+
+      if (!gitExtension.isActive) {
+        await gitExtension.activate();
+      }
+
+      await vscode.commands.executeCommand("_git.cloneRepository", REPO_URL, dest);
+
+      vscode.window.showInformationMessage(
+        `Created ReVamp project "${name}". Run "pnpm install" in the new window to install dependencies.`
+      );
+
+      const uri = vscode.Uri.file(dest);
+      await vscode.commands.executeCommand("vscode.openFolder", uri, {
+        forceNewWindow: true,
+      });
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err);
+      vscode.window.showErrorMessage(`ReVamp setup failed: ${msg}`);
+    }
   });
 
   context.subscriptions.push(cmd);

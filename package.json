@@ -8,6 +8,12 @@
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
   "keywords": ["scaffold", "template", "nextjs", "ai", "starter"],
+  "files": [
+    "out/**",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/j2kenton/revamp-vscode.git"
@@ -27,9 +33,11 @@
     ]
   },
   "scripts": {
+    "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package"
+    "package": "vsce package --no-dependencies",
+    "publish": "vsce publish --no-dependencies"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
