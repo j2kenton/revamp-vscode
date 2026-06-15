@@ -1,4 +1,6 @@
 node_modules/
 .claude/
+template/
+.template-tmp-*/
 *.vsix
 *.tgz

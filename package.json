@@ -10,6 +10,7 @@
   "keywords": ["scaffold", "template", "nextjs", "starter"],
   "files": [
     "out/**",
+    "template/**",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"
@@ -33,7 +34,8 @@
     ]
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
+    "vscode:prepublish": "npm run sync-template && npm run compile",
+    "sync-template": "node scripts/sync-template.js",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
     "package": "vsce package --no-dependencies",

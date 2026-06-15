@@ -11,12 +11,11 @@ ReVamp is a Next.js starter template with TypeScript, Tailwind CSS 4, shadcn/ui,
 1. Open the command palette (`Ctrl+Shift+P` / `Cmd+Shift+P`)
 2. Run **ReVamp: New Project**
 3. Enter a project name and choose a parent folder
-4. The extension clones the template and opens the project in a new window
+4. The extension creates the project from the bundled starter and opens it in a new window
 5. Install dependencies in the new project before starting development
 
 ## Requirements
 
-- Git must be installed and on your PATH
 - [pnpm](https://pnpm.io) must be installed globally for the generated project
 
 ## License
