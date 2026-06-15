@@ -3,7 +3,7 @@
   "displayName": "ReVamp",
   "description": "Scaffold an AI-powered ReVamp project from the command palette",
   "version": "0.1.0",
-  "publisher": "PUBLISHER_ID_HERE",
+  "publisher": "j2kenton",
   "license": "MIT",
   "engines": { "vscode": "^1.90.0" },
   "categories": ["Other"],
