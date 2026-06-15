@@ -1,7 +1,7 @@
 import * as vscode from "vscode";
 import * as path from "path";
 import * as fs from "fs";
-import { execSync } from "child_process";
+import { spawnSync } from "child_process";
 
 const REPO_URL = "https://github.com/jonathankenton/revamp.git";
 
@@ -38,10 +38,12 @@ export function activate(context: vscode.ExtensionContext) {
       async (progress) => {
         try {
           progress.report({ message: "Cloning…" });
-          execSync(`git clone ${REPO_URL} "${dest}"`, { stdio: "pipe" });
+          const clone = spawnSync("git", ["clone", REPO_URL, dest], { stdio: "pipe" });
+          if (clone.status !== 0) throw new Error(clone.stderr?.toString() || "git clone failed");
 
           progress.report({ message: "Installing dependencies…" });
-          execSync("pnpm install", { cwd: dest, stdio: "pipe" });
+          const install = spawnSync("pnpm", ["install"], { cwd: dest, stdio: "pipe" });
+          if (install.status !== 0) throw new Error(install.stderr?.toString() || "pnpm install failed");
 
           const uri = vscode.Uri.file(dest);
           await vscode.commands.executeCommand("vscode.openFolder", uri, {

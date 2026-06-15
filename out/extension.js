@@ -36,9 +36,13 @@ function activate(context) {
         }, async (progress) => {
             try {
                 progress.report({ message: "Cloning…" });
-                (0, child_process_1.execSync)(`git clone ${REPO_URL} "${dest}"`, { stdio: "pipe" });
+                const clone = (0, child_process_1.spawnSync)("git", ["clone", REPO_URL, dest], { stdio: "pipe" });
+                if (clone.status !== 0)
+                    throw new Error(clone.stderr?.toString() || "git clone failed");
                 progress.report({ message: "Installing dependencies…" });
-                (0, child_process_1.execSync)("pnpm install", { cwd: dest, stdio: "pipe" });
+                const install = (0, child_process_1.spawnSync)("pnpm", ["install"], { cwd: dest, stdio: "pipe" });
+                if (install.status !== 0)
+                    throw new Error(install.stderr?.toString() || "pnpm install failed");
                 const uri = vscode.Uri.file(dest);
                 await vscode.commands.executeCommand("vscode.openFolder", uri, {
                     forceNewWindow: true,
