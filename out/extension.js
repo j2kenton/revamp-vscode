@@ -39,14 +39,14 @@ function activate(context) {
                 const clone = (0, child_process_1.spawnSync)("git", ["clone", REPO_URL, dest], { stdio: "pipe" });
                 if (clone.status !== 0)
                     throw new Error(clone.stderr?.toString() || "git clone failed");
-                progress.report({ message: "Installing dependencies…" });
-                const install = (0, child_process_1.spawnSync)("pnpm", ["install"], { cwd: dest, stdio: "pipe" });
-                if (install.status !== 0)
-                    throw new Error(install.stderr?.toString() || "pnpm install failed");
                 const uri = vscode.Uri.file(dest);
                 await vscode.commands.executeCommand("vscode.openFolder", uri, {
                     forceNewWindow: true,
                 });
+                // Open a terminal so the user can run pnpm install in the new window
+                const terminal = vscode.window.createTerminal({ name: "ReVamp Setup", cwd: dest });
+                terminal.show();
+                terminal.sendText("pnpm install");
             }
             catch (err) {
                 const msg = err instanceof Error ? err.message : String(err);
