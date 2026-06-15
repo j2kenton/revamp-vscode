@@ -38,8 +38,8 @@
     "sync-template": "node scripts/sync-template.js",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "package": "vsce package --no-dependencies",
-    "publish": "vsce publish --no-dependencies"
+    "package": "vsce package --no-dependencies && node scripts/sanitize-vsix.js revamp-0.1.0.vsix",
+    "publish": "npm run package && vsce publish --packagePath revamp-0.1.0.vsix"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",

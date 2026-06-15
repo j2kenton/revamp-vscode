@@ -83,6 +83,11 @@ function main() {
         "",
       ].join("\n")
     );
+
+    const templatePackagePath = path.join(templateDir, "package.json");
+    const templatePackage = JSON.parse(fs.readFileSync(templatePackagePath, "utf8"));
+    delete templatePackage.dependencies?.init;
+    fs.writeFileSync(templatePackagePath, `${JSON.stringify(templatePackage, null, 2)}\n`);
   } finally {
     fs.rmSync(tempDir, { recursive: true, force: true });
   }
